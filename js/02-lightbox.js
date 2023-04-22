@@ -1,32 +1,24 @@
-import { galleryItems } from './gallery-items.js';
+import { galleryItems } from "./gallery-items.js";
 
 const galleryContainer = document.querySelector(".gallery");
 
 const itemsMarkup = createGalleryMarkup(galleryItems);
 
 galleryContainer.insertAdjacentHTML("beforeend", itemsMarkup);
-galleryContainer.addEventListener("click", onImageClick);
+
 function createGalleryMarkup(galleryItems) {
   return galleryItems
     .map(({ preview, original, description }) => {
       return `<li class="gallery__item">
-    <a class="gallery__link" href="${original}">
-      <img
-        class="gallery__image"
-        src="${preview}"
-        data-source="${original}"
-        alt="${description}"
-      />
-    </a>
-  </li>`;
+      <a class="gallery__link" href="${original}">
+      <img class="gallery__image" src="${preview}" alt="${description}"/>
+</a>
+</li>`;
     })
     .join("");
 }
 
-// function onImgClick(e) {
-//   e.preventDefault();
-//   const datasetSource = e.target.dataset.source;
-//   if (!datasetSource) return;
-//   instance.element().querySelector("img").src = datasetSource;
-//   instance.show();
-// }
+const lightbox = new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionDelay: 250,
+});
