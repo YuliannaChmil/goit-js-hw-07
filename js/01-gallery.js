@@ -50,16 +50,3 @@ function closeOnEsc(event) {
     instance.close();
   }
 }
-
-function onImgClick(e) {
-  e.preventDefault();
-  const datasetSource = e.target.dataset.source;
-  if (!datasetSource) return;
-  instance.element().querySelector("img").src = datasetSource;
-  instance.show();
-}
-
-function onEscKeyPress(e) {
-  if (e.code !== "Escape") return;
-  instance.close();
-}
